@@ -18,7 +18,7 @@ with DAG(
     max_active_runs=1,
 ) as dag:
     
-    number_of_tasks = Variable.get("performance_test_number_of_tasks", default_var=5) 
+    number_of_tasks = int(Variable.get("performance_test_number_of_tasks", default_var=5))
 
     task_list = [f"task_{x}" for x in list(range(0, number_of_tasks))]
 
@@ -42,7 +42,7 @@ with DAG(
         import string
         import random
 
-        str_length = Variable.get("performance_test_str_length", default_var=100000)
+        str_length = int(Variable.get("performance_test_str_length", default_var=100000))
 
         m = hashlib.sha256()
         txt = "".join(
